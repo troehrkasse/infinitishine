@@ -1,6 +1,6 @@
 infinitishine is an Ecommerce jewelry theme developed for use by infinitishine.com
 
-This theme draws inspiration and framework from Hydrogen & WC-Wood-Shop (themes developed by RADD Creative).
+This theme draws inspiration and framework from Hydrogen & WC-Wood-Shop (developed by RADD Creative).
 
 Theme features: fast & efficient Ecommerce jewelry store. Supports a large inventory, customer reviews, order tracking, and more!
 
