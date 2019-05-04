@@ -1,0 +1,79 @@
+	{% include 'partials/header-html.twig' %}
+
+	{% spaceless %}
+	<body class="{{body_class}}" data-template="base.twig">
+		<div class="infinitishine-page-wrapper">
+			<header id="main-header">
+				<div class="top-header">
+					<div class="container">
+						<div class="logo-title-wrapper">
+							{% include 'partials/logo.twig' %}
+						</div>
+						{% include 'partials/menu/user.twig' %}
+					</div>
+
+					<div class="mobile-menu-trigger-wrapper d-lg-none">
+						<ul class="nav mobile-menu-trigger">
+							<li class="nav-item">
+								<a class="btn" href="{{fn('site_url', 'cart')}}">
+									<i class="fa fa-shopping-cart"></i>
+								    <span class="cart-count">{{woocommerce.cart.get_cart_contents_count > 0 ? woocommerce.cart.get_cart_contents_count : ''}}</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="btn btn-menu">menu<i class="fa fa-bars"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</header>
+
+			<div class="page-inner">
+				<div class="canvas-overlay"></div>
+
+				{% block page %}
+					{% block page_slider %}
+					<section class="p-a-0 page-slider-wrapper">
+						<div class="page-slider">
+				    		<div clas='inner'>
+								{%  if post.thumbnail.src %}
+				    			<div class='thumbnail-wrapper'>
+				    				<img class='img-fluid' src="{{post.thumbnail.src | resize(1400, 200)}}" />
+				    			</div>
+								{% endif %}
+				    		</div>
+				    	</div>
+					</section>
+					{% endblock %}
+
+					{% block page_menu %}
+						{% include 'partials/menu/page-menu.twig' %}
+					{% endblock %}
+
+					<section class="{{container ? 'container' : ''}} page-wrapper">
+						<div class="clearfix {{ show_sidebar  ? 'row':'' }}">
+							{% if show_sidebar %}
+								{% include "partials/sidebar.twig" %}
+							{%endif%}
+
+							<div class="{{show_sidebar ? 'col-lg-9 col-sl-10' : ''}} clearfix wrapper {{sidebar_class}}">
+                                {% block content %}
+									<main class="" role="main">
+                                        {{post.content}}
+									</main>
+                                {% endblock %}
+							</div>
+						</div>
+					</section><!-- END .infinitishine-canvas -->
+				{% endblock %}
+			</div><!-- END  .page-inner -->
+
+			{% include "partials/menu/mobile-primary.twig" %}
+		</div>
+
+		{% include 'partials/footer.twig' %}
+
+		{{ function('wp_footer') }}
+	</body>
+	{% endspaceless %}
+</html>

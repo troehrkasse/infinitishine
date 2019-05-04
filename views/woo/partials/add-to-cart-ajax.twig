@@ -1,0 +1,6 @@
+<div class="btn btn-info add-to-cart-wrapper">
+    <i class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i>
+    <a class="{{ product.product.is_type('simple') ? 'add-to-cart-ajax' : '' }}" href='{{product.product.add_to_cart_url}}' data-item="{{product.id}}">
+        {{product.product.add_to_cart_text}}
+    </a>
+</div>

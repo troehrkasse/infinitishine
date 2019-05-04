@@ -1,0 +1,11 @@
+{%block page_header%}
+<div class='infinitishine-page-title-wrapper'>
+    <header>
+        <h1 class='title'>{{title ? title : product.title ? product.title : post.title  }}</h1>
+    
+        <div class='infinitishine-woo-breadcrumbs-wrapper'>
+            {{ function('woocommerce_breadcrumb') }}
+        </div>
+    </header>
+</div>
+{%endblock%}

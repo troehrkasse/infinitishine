@@ -1,0 +1,497 @@
+.bg-brand-light {
+  background: $brand-accent;
+}
+
+.bg-dark {
+  background: #333;
+  color: #F2F2F2;
+}
+
+.bg-white {
+  background: #F2F2F2;
+}
+
+.color-white {
+  color: $brand-white;
+}
+
+.product-wrapper {
+  .product {
+    .img-wrapper {
+
+      > a {
+        display: block;
+        position: relative;
+
+        .sale-label {
+          position: absolute;
+          left: -22px;
+          top: -22px;
+          border-radius: 50%;
+          width: 55px;
+          height: 55px;
+          vertical-align: middle;
+          padding-top: 15px;
+          background: $brand-info;
+          color: #FFF;
+          font-weight: 800;
+          text-align: center;
+          box-shadow: -2px 0 2px 0 darken($brand-info, 10%);
+          animation-duration: 2s;
+          animation-iteration-count: 1;
+          animation-timing-function: ease-in-out;
+          animation-name: blink;
+        }
+      }
+    }
+
+    .terms-wrapper {
+      padding-top: 5px;
+      margin-bottom: 8px;
+
+      .title {
+        opacity: 0.75;
+      }
+
+      .terms {
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+
+        .term {
+          list-style: none;
+          display: inline-block;
+        }
+      }
+    }
+
+    .add-to-cart-wrapper {
+
+      a {
+        color: $brand-white;
+      }
+
+      .fa {
+        color: #FFF;
+        width: 0;
+        transition: width ease-in-out 0.225;
+
+        &:before {
+          height: 0;
+          display: none;
+        }
+
+        &.adding {
+          width: 20px;
+
+          &:before {
+            height: initial;
+            display: initial;
+          }
+        }
+      }
+    }
+  }
+}
+
+.price-wrapper {
+  .price {
+    font-weight: 900;
+  }
+
+  .savings {
+    margin-left: .3rem;
+  }
+}
+
+.product-cards {
+  .products {
+    .product-wrapper {
+      padding: $padding;
+      text-align: center;
+      @extend .card;
+
+      /*
+      background: $brand-white;
+      border: solid 1px rgba(0, 0, 0, 0.035);
+
+      &:hover {
+        background: $gray-lightest;
+      }
+      */
+
+      .product {
+        position: relative;
+        height: 100%;
+
+        .inner {
+          padding-top: $padding*2;
+          padding-bottom: $padding*3.54;
+          height: 100%;
+        }
+
+        .img-wrapper {
+          display: inline-block;
+          width: 80%;
+        }
+
+        .title {
+          padding: 6px;
+          margin: 0;
+          margin-left: auto;
+          margin-right: auto;
+          width: 80%;
+        }
+
+        .price-wrapper {
+          display: flex;
+          font-weight: 800;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+
+          .label{
+            margin-right: .2rem;
+          }
+
+          .price {
+            color: $brand-info;
+            font-size: 1.125em;
+          }
+
+          .savings {
+            display: block;
+            padding: 15px 0;
+            font-size: .65rem;
+          }
+        }
+
+        .add-to-cart-outer {
+          position: absolute;
+          bottom: $padding;
+          width: 100%;
+          text-align: center;
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+.chalkboard-wrapper {
+  text-align: center;
+  font-weight: 700;
+  border-radius: $border-radius;
+  background: $brand-primary-dark;
+  opacity: 0.90;
+  padding: $padding;
+  margin-bottom: $padding;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.75);
+  }
+
+  .chalkboard {
+    position: relative;
+    font-family: "PWScratched2" !important;
+    z-index: 0;
+    text-transform: uppercase;
+
+    &:before, &:after {
+      font-size: 7rem;
+      opacity: 0.05;
+      color: #FFF !important;
+      z-index: -1;
+      opacity: 0.05;
+      position: absolute;
+    }
+
+    &:before {
+      content: 'EXCLUSIVE ';
+      top: -23%;
+      left: -16%;
+    }
+
+    &:after {
+      content: 'SALES ';
+      top: 52.2%;
+      left: 6%;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      &:before {
+        top: -16.5%;
+        left: -12%;
+      }
+
+      &:after {
+        top: 75.2%;
+        left: 38.0%;
+      }
+    }
+  }
+
+  .title {
+    font-size: 3.75rem;
+
+    > span {
+      color: #FFF !important;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      font-size: 5rem;
+    }
+  }
+}
+
+.pagination-wrapper {
+  display: block;
+  text-align: center;
+
+  nav {
+    display: inline-block;
+  }
+
+  ul {
+    li {
+      .page-link {
+        font-weight: 900;
+        font-size: 1.25em;
+
+        &.current {
+          background-color: $brand-info;
+          color: #FFF;
+        }
+      }
+    }
+  }
+}
+
+.helpful-links-wrapper {
+  .helpful-links {
+    padding: 0;
+
+    .helpful-link {
+      list-style: none;
+      border-top: solid 1px $brand-primary;
+
+      a {
+        font-size: 1.445rem;
+        padding: $padding/2 0;
+        display: block;
+        letter-spacing: 3px;
+        word-spacing: 3px;
+      }
+    }
+  }
+}
+
+.slider-control {
+  @include vertical-align(absolute);
+  display: inline-block;
+  z-index: 10;
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
+
+  &.slick-disabled {
+    display: none !important;
+  }
+
+  > .fa {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: #FFF;
+    position: relative;
+    font-size: $font-size-lg;
+    text-align: center;
+    box-shadow: 0 0 2px darken($brand-info, 10%);
+
+    &:before {
+      @include vertical-align();
+      display: inline-block;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.title {
+  > span {
+    color: $brand-primary;
+  }
+}
+
+.interactive-catalog {
+  transition: height ease-in-out 0.225s;
+
+  .chalkboard {
+
+    &:before {
+      content: 'JEWELRY ';
+    }
+
+    &:after {
+      content: 'CATALOG';
+    }
+  }
+}
+
+.woocommerce button.single_add_to_cart_button,
+.woocommerce #respond input#submit,
+.slider-control .fa,
+input.submit {
+  @include gradient-y($brand-info, darken($brand-info, 4%));
+  color: #FFF;
+  font-weight: 800;
+
+  &:hover {
+    @include gradient-y(darken($brand-info, 4%), $brand-info);
+    color: #FFF;
+  }
+}
+
+.woocommerce > .product-cards .products {
+  .product {
+    @extend .card;
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: $padding 0;
+
+    .woocommerce-loop-product__link{
+      padding: $padding;
+      position: relative;
+
+      .onsale{
+        @extend .sale-label;
+        @extend .badge;
+        min-height: auto;
+        top: .5rem;
+        left: .75rem;
+      }
+    }
+
+    del{
+      display: inline-block;
+      margin-right: $padding/2;
+    }
+
+    ins{
+      text-decoration: none;
+    }
+
+    h2,
+    .woocommerce-loop-product__title{
+      @extend .card-title;
+      @extend h5;
+      color: $black;
+      padding: $padding 0;
+
+      &:hover{
+        color: $link-hover-color;
+      }
+    }
+
+    .button{
+      width: 65%;
+      margin: 0 auto;
+      @extend .btn;
+      @extend .btn-primary;
+    }
+
+    > *:last-child{
+      margin-top: auto;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .container {
+    padding-left: $padding;
+    padding-right: $padding;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $brand-primary;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: $brand-info;
+}
+
+.fa {
+  &.fa-spinner {
+    color: $brand-primary;
+  }
+}
+
+.btn {
+  a {
+    &.add-to-cart-ajax {
+      color: #FFF;
+
+      &:hover, &:active, &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+button, .btn, a {
+  &:active, &:focus {
+    outline: none !important;
+  }
+}
+
+.parallax {
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.woocommerce {
+  .woocommerce-info {
+    border-top-color: $brand-info !important;
+
+    &:before {
+      color: $brand-info;
+    }
+  }
+
+  table {
+    border-radius: none !important;
+    border: none !important;
+  }
+
+  textarea {
+    height: 640px;
+    border: solid 1px $brand-primary;
+    width: 100%;
+  }
+}
+
+.card{
+  border: solid 1px rgba(0, 0, 0, 0.035);
+  background: $brand-white;
+
+  &:hover {
+    background: $gray-lightest;
+  }
+}

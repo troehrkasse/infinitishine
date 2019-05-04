@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+
+{% block page %}
+<div class="page-wrapper live-search-wrapper">
+	{% filter shortcodes %}
+		[awesome_search_live_search]
+	{% endfilter %}
+</div>
+
+<script type="text/x-template" id="awesome_search_live_search_template_product_default">
+	<div class="col-6 col-sm-4 col-lg-3 col-xxl-2 item-wrapper product-wrapper" v-if="item" >
+        <div class="item product">
+            <div class="clearfix card card-block">
+                <div class="inner">
+                    <div class="img-wrapper">
+                        <a :href="item.link">
+                            <img v-if="item.images && item.images.thumbnail" class=" img-fluid card-img-top" :src="item.images.thumbnail.link" :alt="item.post_title+' image'">
+                        </a>
+                    </div>
+                    <h5 class="card-title title">
+                        <a :href="item.link">{{'{{item.post_title}}'}}</a>
+                    </h5>
+                    <div>
+                        <span class="price-wrapper" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                            <span class="price">{{'{{item.price | format_val("dollar")}}'}}</span> 
+                        </span>
+                    </div>
+                    <div class="terms-wrapper" v-if="item.brands">
+                        <span class="title">Brand:</span> 
+                        <ul class="terms" v-for="brand in item.brands">
+                            <li class="term">
+                                <a :title="'View more products from '+brand.name" :href="brand.link">{{brand.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- END .inner -->
+            </div><!-- END .card -->
+        </div><!-- END .product -->
+    </div>
+</script>
+{% endblock %}

@@ -1,0 +1,3 @@
+@mixin bordered($type:solid,$width:1px,$color:$brand-info ){
+    border:$type $width $color ;
+}

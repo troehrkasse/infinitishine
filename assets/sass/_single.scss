@@ -1,0 +1,13 @@
+body.single-post{
+    section.section{
+        background: $brand-white; padding: $padding*2; margin-top: 0;
+        
+        &:not(:first-child){
+            margin-top: $padding*1.2;
+        }
+        
+        &.single-post-wrapper{
+            
+        }
+    }
+}

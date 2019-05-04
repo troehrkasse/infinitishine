@@ -1,0 +1,17 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+<main class="" role="main">
+    <section class="posts-wrapper">
+        <div class="clearfix row posts">
+            {% for post in posts %}
+            <div class="p-0 clearfix post-wrapper">
+                {% include 'post/tease.twig' %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    {% include 'partials/pagination.twig' %}
+</main>
+{% endblock %}

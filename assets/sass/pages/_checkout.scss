@@ -1,0 +1,127 @@
+body.woocommerce-checkout .woocommerce form.checkout {
+  #customer_details,
+  #order_review {
+    @include make-row();
+    margin-bottom: $padding;
+
+    > * {
+      @include make-col(12);
+      margin-top: 15px;
+
+      > * {
+        padding-top: 18px;
+        background: $brand-white;
+        padding: $padding;
+      }
+    }
+  }
+
+}
+
+body.woocommerce-checkout .woocommerce form.checkout #customer_details {
+  margin-bottom: 40px;
+  margin-right: 0;
+  margin-left: 0;
+
+  .woocommerce-shipping-fields {
+    #ship-to-different-address {
+      > * {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      > input {
+        float: left;
+        width: 30px;
+        position: relative;
+        bottom: 6px;
+      }
+    }
+  }
+}
+
+.woocommerce-billing-fields{
+  > p{
+    display: none;
+  }
+
+  #billing_country_field{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    label{
+      margin-right: .4rem;
+      margin-bottom: 0;
+    }
+  }
+}
+
+body.woocommerce-checkout .woocommerce form.checkout #customer_details .woocommerce-account-fields{
+  label{
+    input{
+      display: inline-block;
+      width: auto;
+    }
+  }
+
+}
+
+body.woocommerce-checkout .woocommerce form.checkout .woocommerce-shipping-fields{
+  #ship-to-different-address{
+    padding: $padding;
+    background: $brand-primary;
+    color: $white;
+
+    label{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    #ship-to-different-address-checkbox{
+      display: inline-block;
+      width: auto;
+      height: 1.45rem;
+      margin-right: .4rem;
+    }
+  }
+}
+
+body.woocommerce-checkout .woocommerce form.checkout .woocommerce-checkout-payment{
+  .wc_payment_method{
+    input{
+      display: inline-block;
+      width: auto;
+      height: 1rem;
+    }
+
+    label{
+      margin-bottom: 0;
+    }
+
+    .payment_method_stripe{
+      #stripe-payment-data{
+        .woocommerce-SavedPaymentMethods-saveNew{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+
+        #wc-stripe-cc-form{
+          .form-row{
+            .stripe-card-group,
+            .StripeElement{
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body.woocommerce-checkout .woocommerce form.checkout #order_review {
+  margin-left: 0;
+  margin-right: 0;
+}

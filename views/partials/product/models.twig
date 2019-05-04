@@ -1,0 +1,6 @@
+{% set models = product.terms('model') %}
+{% if models %}
+<div class="terms-wrapper models-wrapper">
+    <span class="title">Model{{models|length > 1 ? 's':''}}:</span> {{product.formatted_terms('model')}}
+</div>
+{% endif %}

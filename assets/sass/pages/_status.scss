@@ -1,0 +1,10 @@
+body.page-template-default{
+  input{
+    background-color: $gray-lightest;
+    margin: .5rem;
+  }
+  button{
+    background-color: $brand-primary;
+    color: $brand-white;
+  }
+}

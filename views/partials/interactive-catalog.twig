@@ -1,0 +1,12 @@
+{% if page_options.banner[1].title and page_options.banner[1].text %}
+<div class="chalkboard-wrapper interactive-catalog">
+    <div class="chalkboard">
+        <a href="{{fn('get_permalink', options.awesome_search.live_search_page)}}">
+            <span class="d-block h2 h2-responsive font-chalk title">
+                <span>{{page_options.banner[1].title}}</span>
+            </span>
+            <span class='d-block color-white'>{{page_options.banner[1].text}}</span>
+        </a>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,25 @@
+{% if post %}
+<div class="clearfix tease-wrapper post-tease-wrapper">
+    <div class="tease post-tease">
+        <div class="inner">
+            <div class="row">
+                <div class="col-sm-5 img-wrapper thumbnail-wrapper">
+                    <a href="{{post.link}}">
+                        <img class="img-fluid" src="{{post.thumbnail.src|resize(600,400)}}" />
+                    </a>
+                </div>
+                <div class="col-sm-7 content-wrapper">
+                    <h3 class="h3-responsive title">
+                        <a href="{{post.link}}">{{post.post_title}}</a>
+                    </h3>
+                    <p>{{post.content|excerpt(65)}} <a href="{{post.link}}">full article</a></p>
+                    
+                    <div class="terms-wrapper tease-terms-wrapper">
+                        {% include '/partials/terms.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

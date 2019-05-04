@@ -1,0 +1,300 @@
+{% block page_slider %}
+    {% if term.name %}
+        <section class="p-a-0 page-slider-wrapper">
+            <div class="container">
+                <div class="content-wrapper">
+                    {% if term.thumbnail.src %}
+                        <div class="thumbnail-wrapper">
+                            <img class="img-fluid" src="{{ term.thumbnail.src }}"/>
+                        </div>
+                    {% endif %}
+
+                    <div class="description-wrapper read-more-parent">
+                        <div class="title-wrapper">
+                            <h1 class="display-5 title">{{ term.name }}</h1>
+                        </div>
+
+                        {% if term.description %}
+                            <div class="term-description read-more-content">
+                                <div class="inner">
+                                    {{ term.description }}
+                                </div>
+                            </div>
+                            <div class="read-more-wrapper">
+                                <button type="button" class="btn btn-secondary btn-sm text-white read-more-button"
+                                        data-read_more_height="110">
+                                    <span>Expand</span>
+                                    <i class="fa fa-chevron-circle-down text-white ml-1" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
+
+{% extends 'base.twig' %}
+{% block content %}
+    <section class='archive-actions-wrapper'>
+        <div class='row align-items-end flex-row justify-content-end archive-actions'>
+
+            {% if metal_types and metal_types | length > 1 %}
+                <div class='col-1 col-sm-3 col-xxl-2 archive-action viewing-wrapper'>
+                    <div class="dropdown sort">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonViewing"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class='label strong'>Metal: </span>
+                            <span class='viewing'>
+                                {% if _GET['filter_metal'] %}
+                                     {{ _GET['filter_metal'] | replace({'-': ' '}) }}
+                                {% else %}
+                                    All  Metals
+                                {% endif %}
+                                        {{ metal_types_append }}
+                            </span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonViewing">
+                            <a class="dropdown-item" href="{{ fn(
+                                'add_query_arg',
+                                {
+                                    'filter_metal': false,
+                                    'sort': _GET['sort'] ? _GET['sort'] : false,
+                                    'order': _GET['order'] ? _GET['order'] : false,
+                                    'filter_size': _GET['filter_size'] ? _GET['filter_size'] : false,
+                                    'min_price': _GET['min_price'] ? _GET['min_price'] : false,
+                                    'max_price': _GET['max_price'] ? _GET['max_price'] : false,
+                                    'filter_setting': _GET['filter_setting'] ? _GET['filter_setting'] : false,
+                                    'filter_gemstone': _GET['filter_gemstone'] ? _GET['filter_gemstone'] : false
+                                },
+                                term.link
+                            ) }}" data-query=''>All Metals</a>
+                            {% for metal_type in metal_types %}
+                                <a class="dropdown-item"
+                                   data-query='viewing={{ metal_type.slug }}'
+                                    href="{{ fn(
+                                        'add_query_arg',
+                                        {
+                                            'filter_metal': options.load_primary_cat.slug != metal_type.slug ? metal_type.slug : false,
+                                            'sort': _GET['sort'] ? _GET['sort'] : false,
+                                            'order': _GET['order'] ? _GET['order'] : false,
+                                            'filter_size': _GET['filter_size'] ? _GET['filter_size'] : false,
+                                            'min_price': _GET['min_price'] ? _GET['min_price'] : false,
+                                            'max_price': _GET['max_price'] ? _GET['max_price'] : false,
+                                            'filter_setting': _GET['filter_setting'] ? _GET['filter_setting'] : false,
+                                            'filter_gemstone': _GET['filter_gemstone'] ? _GET['filter_gemstone'] : false
+                                        },
+                                        term.link
+                                    ) }}">
+                                    {{ metal_type.name }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class='col-1 col-sm-3 col-xxl-2 archive-action viewing-wrapper'>
+                    <span class='d-inline-block'></span>
+                </div>
+            {% endif %}
+
+            {% if setting_types and setting_types | length > 1 %}
+                <div class='col-1 col-sm-3 col-xxl-2 archive-action viewing-wrapper'>
+                    <div class="dropdown sort">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonViewing"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class='label strong'>Setting: </span>
+                            <span class='viewing'>
+                                {% if _GET['filter_setting'] %}
+                                    {{ _GET['filter_setting'] | replace({'-': ' '}) }}
+                                {% else %}
+                                    All  Settings
+                                {% endif %}
+                                {{ setting_types_append }}
+                            </span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonViewing">
+                            <a class="dropdown-item" href="{{ fn(
+                                'add_query_arg',
+                                {
+                                    'filter_metal': _GET['filter_metal'] ? _GET['filter_metal'] : false,
+                                    'sort': _GET['sort'] ? _GET['sort'] : false,
+                                    'order': _GET['order'] ? _GET['order'] : false,
+                                    'filter_size': _GET['filter_size'] ? _GET['filter_size'] : false,
+                                    'min_price': _GET['min_price'] ? _GET['min_price'] : false,
+                                    'max_price': _GET['max_price'] ? _GET['max_price'] : false,
+                                    'filter_gemstone': _GET['filter_gemstone'] ? _GET['filter_gemstone'] : false,
+                                    'filter_setting': false,
+                                },
+                                term.link
+                            ) }}" data-query=''>All Settings</a>
+                            {% for setting_type in setting_types %}
+                                <a class="dropdown-item"
+                                   data-query='viewing={{ setting_type.slug }}'
+                                   href="{{ fn(
+                                       'add_query_arg',
+                                       {
+                                           'filter_setting': options.load_primary_cat.slug != setting_type.slug ? setting_type.slug : false,
+                                           'sort': _GET['sort'] ? _GET['sort'] : false,
+                                           'order': _GET['order'] ? _GET['order'] : false,
+                                           'filter_size': _GET['filter_size'] ? _GET['filter_size'] : false,
+                                           'min_price': _GET['min_price'] ? _GET['min_price'] : false,
+                                           'max_price': _GET['max_price'] ? _GET['max_price'] : false,
+                                           'filter_metal': _GET['filter_metal'] ? _GET['filter_metal'] : false,
+                                           'filter_gemstone': _GET['filter_gemstone'] ? _GET['filter_gemstone'] : false
+                                       },
+                                       term.link
+                                   ) }}">
+                                    {{ setting_type.name }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class='col-1 col-sm-3 col-xxl-2 archive-action viewing-wrapper'>
+                    <span class='d-inline-block'></span>
+                </div>
+            {% endif %}
+
+            {% if gemstone_details and gemstone_details | length > 1 %}
+                <div class='col-1 col-sm-3 col-xxl-2 archive-action viewing-wrapper'>
+                    <div class="dropdown sort">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonViewing"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class='label strong'>Gemstone: </span>
+                            <span class='viewing'>
+                                {% if _GET['filter_gemstone'] %}
+                                    {{ _GET['filter_gemstone'] | replace({'-': ' '}) }}
+                                {% else %}
+                                    All  Gemstones
+                                {% endif %}
+                                {{ setting_types_append }}
+                            </span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonViewing">
+                            <a class="dropdown-item" href="{{ fn(
+                                'add_query_arg',
+                                {
+                                    'filter_metal': _GET['filter_metal'] ? _GET['filter_metal'] : false,
+                                    'sort': _GET['sort'] ? _GET['sort'] : false,
+                                    'order': _GET['order'] ? _GET['order'] : false,
+                                    'filter_size': _GET['filter_size'] ? _GET['filter_size'] : false,
+                                    'min_price': _GET['min_price'] ? _GET['min_price'] : false,
+                                    'max_price': _GET['max_price'] ? _GET['max_price'] : false,
+                                    'filter_setting': _GET['filter_setting'] ? _GET['filter_setting'] : false,
+                                    'filter_gemstone': false,
+                                },
+                                term.link
+                            ) }}" data-query=''>All Gemstones</a>
+                            {% for gemstone_detail in gemstone_details %}
+                                <a class="dropdown-item"
+                                   data-query='viewing={{ gemstone_detail.slug }}'
+                                   href="{{ fn(
+                                       'add_query_arg',
+                                       {
+                                           'filter_gemstone': options.load_primary_cat.slug != gemstone_detail.slug ? gemstone_detail.slug : false,
+                                           'filter_setting': _GET['filter_setting'] ? _GET['filter_setting'] : false,
+                                           'sort': _GET['sort'] ? _GET['sort'] : false,
+                                           'order': _GET['order'] ? _GET['order'] : false,
+                                           'filter_size': _GET['filter_size'] ? _GET['filter_size'] : false,
+                                           'min_price': _GET['min_price'] ? _GET['min_price'] : false,
+                                           'max_price': _GET['max_price'] ? _GET['max_price'] : false,
+                                           'filter_metal': _GET['filter_metal'] ? _GET['filter_metal'] : false
+                                       },
+                                       term.link
+                                   ) }}">
+                                    {{ gemstone_detail.name }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class='col-1 col-sm-3 col-xxl-2 archive-action viewing-wrapper'>
+                    <span class='d-inline-block'></span>
+                </div>
+            {% endif %}
+
+            {% if options.sort_by_metas %}
+                <div class='col-1 col-sm-4 col-xxl-3 archive-action sort-wrapper'>
+                    <div class="dropdown sort">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonSortby"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class='label strong'>Sort By: </span>
+                            <span class='sorting-by'>
+                    {% if _GET['sort'] %}
+                        <span class='term'>{{ _GET['sort']|replace({'_': ' '})| replace({'regular': ''})|capitalize }}</span>
+                        {{ _GET['order']=='asc' ? 'low to high':'high to low' }}
+                    {% else %}
+                        Default Order
+                    {% endif %}
+                </span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSortby">
+                            <a
+                                    class="dropdown-item"
+                                    data-query=''
+                                    href="{{ fn('add_query_arg', {'product-type': (_GET['product-type'] ? _GET['product-type'] : false)},term.link) }}"
+                            >
+                                Default Order
+                            </a>
+                            {% for _key, meta in options.sort_by_metas %}
+                                <a class="dropdown-item"
+                                   href="{{
+                                   fn(
+                                       'add_query_arg',
+                                       {
+                                           'product-type': _GET['product-type'] ? _GET['product-type'] : false,
+                                           'sort': _key,
+                                           'order': 'asc'
+                                       },
+                                       term.link
+                                   )
+                                   }}"
+                                   data-query='price=asc'
+                                >
+                                    {{ meta }}: low to high
+                                </a>
+                                <a class="dropdown-item"
+                                   href="{{fn(
+                                       'add_query_arg',
+                                       {
+                                           'product-type': _GET['product-type'] ? _GET['product-type'] : false,
+                                           'sort': _key,
+                                           'order': 'desc'
+                                       },
+                                       term.link
+                                   )}}"
+                                   data-query='price=desc'
+                                   >
+                                    {{ meta }}: high to low
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+    <section class="products-wrapper product-cards">
+        <div class="clearfix row products">
+            {% if products %}
+                {% for product in products %}
+                    <div class="p-0 clearfix {{ options.accessories_cat.id == term.id or ( _GET and _GET['product-type'] == options.accessories_cat.slug) ? 'col-6 col-md-4 col-xxl-3 col-sl-2' : 'col-6 col-xxl-4' }} product-wrapper">
+                        {% include 'product/tease.twig' %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="p-0 clearix">
+                    Sorry, no products match that search.
+                </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+    {% include 'partials/pagination.twig' %}
+
+{% endblock %}

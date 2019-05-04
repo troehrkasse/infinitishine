@@ -1,0 +1,52 @@
+{% extends 'base.twig' %}
+
+{% block page_slider %}
+<section class="p-y-2 page-slider-wrapper">
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="clearfix searchform-wrapper">
+                <form class="searchform" action="{{ site.url }}">
+                    <div class="input-wrapper">
+                        <div class="label">Your Searched For:</div>
+                        <input type="search" id="s" name="s" value="{{ searched}}" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block page_menu %}
+<header class="clearfix bottom-header d-none d-md-block p-a-0 m-a-0">
+	<div class="clearfix container">
+		<div class="clearfix desktop-header-wrapper">
+			{% include "partials/menu/primary.twig" %}
+		</div>
+	</div>
+</header>
+{% endblock %}
+
+{% block content %}
+    <section class="product-cards search-results-wrapper">
+        <div class="products">
+            <div id="live-search-app">
+                <live-search></live-search>
+            </div>
+        </div>
+        <div class="row products hide-on-live-search">
+            {% for post in posts %}
+                {% if post.post_type == 'product' %}
+                    {% set product = post %}
+                {% endif %}
+                
+                <div class=" col-sm-6  col-md-4 col-xxl-3 product-wrapper">
+                    {% include 'product/tease.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <div class="hide-on-live-search">
+    {% include 'partials/pagination.twig' %}
+    </div>
+{% endblock %}

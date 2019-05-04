@@ -1,0 +1,123 @@
+.infinitishine-page-wrapper {
+    @include gradient-y($gray-lightest, $gray-lighter);
+    // box-shadow: rgba(0, 0, 0, 0.8) 0px 20px 30px -20px;
+
+    .page-slider-wrapper {
+        position: relative;
+        height: 200px;
+        background: $brand-info;
+        overflow: hidden;
+        color: #FFF;
+
+        .container {
+            height: 100%;
+            position: relative;
+
+            .content-wrapper {
+                position: absolute;
+                bottom: 0;
+                left: $padding;
+                width: 100%;
+
+                .title {
+                    color: #FFF;
+                }
+            }
+        }
+    }
+
+    .page-wrapper {
+        padding: 30px 0;
+
+        .sidebar {
+            min-height: 120px;
+        }
+
+        .wrapper {
+            width: 100%;
+
+            .content-wrapper {
+                padding: $padding;
+                background: $brand-white;
+            }
+        }
+    }
+
+    .ls-container {
+        .ls-slide {
+            text-align: center;
+            padding-top: 22px; //position:absolute; bottom:0; height:120px;
+            h2,
+            h3,
+            h4,
+            >a {
+                display: inline-block;
+                position: relative !important; //top:50%; margin-bottom:15px;
+            }
+        }
+
+    }
+
+    .posts-wrapper {
+        .posts {
+            position: relative;
+
+            .post-wrapper {
+                position: relative; //height:420px;
+                >* {
+                    padding-left: 30px;
+                    padding-right: 30px;
+                    text-align: center;
+                    height: 100%;
+                    border: solid 1px rgba(0, 0, 0, 0.035);
+                    position: relative;
+                    background: #FFF;
+
+                    .inner {
+                        display: inline-block;
+                        text-align: left;
+                        padding-top: $padding*3;
+                        padding-bottom: $padding*3; //@include vertical-align();
+                        >* {
+                            // display:inline-block; vertical-align:middle;
+                        }
+
+                        .thumbnail-wrapper {
+                            //overflow:hidden;
+                        }
+                    }
+
+                    &:hover {
+                        background: $gray-lightest;
+                    }
+
+                    .terms-wrapper {
+                        display: block;
+                        margin-bottom: $padding;
+
+                        .terms-wrapper {
+                            display: inline-block;
+                            margin-right: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@import "home";
+
+@import "compare_size_chart";
+
+@import 'live-search';
+
+@import 'checkout';
+
+@import 'cart';
+
+@import 'faqs';
+
+@import 'template-taxonomy-landing-page';
+
+@import 'status';

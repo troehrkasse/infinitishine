@@ -1,0 +1,6 @@
+{% set brands = product.terms('brands') %}
+{% if brands %}
+<div class="terms-wrapper brands-wrapper">
+    <span class="title">Brand{{brands|length > 1 ? 's':''}}:</span> {{product.formatted_terms('brands')}}
+</div>
+{% endif %}

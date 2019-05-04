@@ -1,0 +1,119 @@
+{% if menu.primary.get_items %}
+<nav class="nav-main desktop-nav" role="navigation">
+	<ul class="nav">
+	{% for item in menu.primary.get_items %}
+		{% if  'mega' not in item.classes %} 
+		<li class="nav-item {{item.classes | join(' ')}}">
+			<a class="nav-link" href="{{item.get_link}}">{{item.title}}</a>
+			{% if item.get_children %}
+				<ul class="nav nav-drop">
+				{% for child in item.get_children %}
+					<li class="nav-drop-item">
+						<a class="nav-link" href="{{child.get_link}}">{{child.title}}</a>
+					</li>
+				{% endfor %}
+				</ul>
+			{% endif %}
+		</li>
+		{% else %}
+			{% if 'terms' in item.classes or 'terms-children' in item.classes %}
+			<li class="nav-item {{item.classes | join(' ')}}">
+				{% if 'terms' in item.classes %}
+					{% set terms = function('bn_get_terms', (item.link|trim('#') ) ) %}
+				{% else %}
+					{% set terms = function('bn_get_terms_children', (item.link|trim('#') ) ) %}
+				{% endif %}
+				<a href="javascript:void(0)" class="nav-link">
+					{{item.title}}
+					
+					{% if terms %}
+					<i class="fa" aria-hidden="true"></i>
+					{% endif %}
+				</a>
+				
+				{% if terms %}
+				<span class="container mega-wrapper">
+					<span class="inner">
+						{% if item.attr_title %}
+						<span class="menu-title h2">{{item.attr_title}}</span>
+						{% endif %}
+						
+						<span class="{{ 'wide' in item.classes ? 'row':''}}">
+						{% for term in terms %}
+							<span class="{{'wide' in item.classes ? 'col-lg-3 ':''}}mega-item-wrapper">
+								<span class="mega-item">
+									<a href="{{term.link}}">
+										{% if term.thumbnail %}
+										<span class="thumbnail-wrapper">
+											<img class="img-fluid" src="{{term.thumbnail.src|resize(80,60)}}" />
+										</span>
+										{% endif %}
+										<span class="{{'wide' in item.classes ? 'h6' : 'h5'}} title {{term.thumbnail ? '':'p-a-1'}}">
+											{{term.name}}
+										</span>
+									</a>
+								</span>
+							</span>
+						{% endfor %}
+						</span>
+					</span>
+				</span>
+				{% endif %}
+			</li>
+			{% else %}
+			<li class="nav-item {{item.classes | join(' ')}}">
+				<a href="javascript:void(0)" class="nav-link">
+					{{item.title}}
+					
+					{% if item.get_children %}
+					<i class="fa" aria-hidden="true"></i>
+					{% endif %}
+				</a>
+				<span class="container mega-wrapper">
+					<span class="inner">
+						{% if item.attr_title %}
+						<span class="menu-title h2">{{item.attr_title}}</span>
+						{% endif %}
+						
+						<span class="row">
+						{% for child in item.get_children %}
+							{% if child.thumbnail %}
+								{% set thumbnail = child.thumbnail %}
+							{% else %}
+								{% if child._menu_item_object_id %}
+									{% if not child.thumbnail %}
+										{% set term = function('bn_get_term', child._menu_item_object_id) %}
+										{% if term.thumbnail %}
+											{% set thumbnail = term.thumbnail %}
+										{% endif %}
+									{% endif %}
+								{% endif %}
+							{% endif %}
+							
+							<span class="col-6 col-md-2 mega-item-wrapper {{ thumbnail ? 'has-thumbnail':'no-thumbnail' }}">
+								<span class="mega-item">
+									<a href="{{child.get_link}}" class="{{child.classes | join(' ')}}">
+										{% if thumbnail %}
+										<span class="thumbnail-wrapper">
+											<img class="img-fluid" src="{{thumbnail.src|resize(280,190)}}" alt="{{thumbnail.title}}" /> 
+										</span>
+										{% endif %}
+										
+										<span class="title h5 {{thumbnail ? '':'p-1'}}">
+											{{child.title}}
+										</span>
+									</a>
+								</span>
+							</span>
+							{% set thumbnail = null %}
+						{% endfor %}
+						</span>
+					</span>
+				</span>
+			</li>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+	</ul>
+</nav><!-- #nav -->
+{% endif %}

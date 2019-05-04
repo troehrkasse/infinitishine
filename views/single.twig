@@ -1,0 +1,86 @@
+{% extends 'base.twig' %}
+
+{% block page_slider %}
+    {% if post.thumbnail %}
+    <div class='post-page-slider-wrapper'>
+        <div class='post-page-slider'>
+            <div class="image-wrapper">
+                <img class="img-fluid" src="{{post.thumbnail.src|resize(2400,400, 'bottom-center')}}" />
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="section single-post-wrapper">
+    <div class="inner">
+        <article>
+            <h1 class='title'>{{post.title}}</h1>
+            <div>
+                {{post.content}}
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class='section comments-wrapper'>
+    {% include 'partials/comments/comments.twig' with {post:post} %}
+</section>
+
+<div class="bottom-section">
+    <div class="container">
+        <div class="row">
+            <div class="single-post-extra-content-wrapper">
+                {% if post.accessories %}
+                <section id="post-details-accessories" class='mb-3 tab-pane betg-section' role='tabpanel'>
+                    <div class="post-cards">
+                        <h3 class='title'>Goes great with these accessories</h3>
+                        
+                        <div class='related-posts-wrapper'>
+                            <div class="gallery posts">
+                                {% set col_class='col-6' %}
+                                
+                                {% for post in post.accessories %}
+                                    <div class="related-post-wrapper post-wrapper">
+                                    {% include 'woo/partials/post.twig' %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </section>
+                {% endif %}
+                
+                {% if post.related(null, 'sheds') %}
+                <section id="post-details-related" class='tab-pane betg-section' role='tabpanel'>
+                    <div class="post-cards">
+                        {% if post.terms('brands')[0] %}
+                            <h3 class='title'>Other Products from {{post.terms('brands')[0]}}</h3>
+                        {% elseif post.terms('model')[0] %}
+                            <h3 class='title'>More {{post.terms('model')[0]}} models  </h3>
+                        {% elseif post.terms('post_cat')[0] %}
+                            <h3 class='title'>Related Products</h3>
+                        {% endif %}
+                        
+                        <div class='related-posts-wrapper'>
+                            <div class="gallery posts">
+                                {% set col_class='col-6 col-md-4' %}
+                                
+                                {% for post in post.related(null, 'sheds') %}
+                                    <div class="related-post-wrapper post-wrapper">
+                                    {% include 'woo/partials/post.twig' %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+<form class="single-addon-variations " method="post">
+	{% if accessory.get_available_variations %}
+		<div class="variations-wrapper" >
+			<div class="row">
+			 {% set loop = 0 %}
+			 {% for attribute_name, options in accessory.variation_attributes %}
+					<div class="col-xs-6">
+						<select id="{{attribute_name}}" class="select2" name="attribute_{{attribute_name}}" style="width: 100%" data-placeholder="Select {{attribute_name | BN_BEAUTIFY}}">
+							{% if options is iterable %}
+							<option value="">Select {{attribute_name | BN_BEAUTIFY}} </option>
+							{% if function('taxonomy_exists', attribute_name ) %}
+								{% set orderby = function('wc_attribute_orderby', attribute_name) %}
+	
+								{% if orderby == 'name' %}
+									{% set args = {'orderby' : 'name', 'hide_empty' : false, 'menu_order' : false } %}
+								{% elseif orderby == 'id' %}
+									{% set args = {'orderby':'id', 'order' : 'ASC', 'menu_order' : false, 'hide_empty' : false } %}
+								{% elseif orderby == 'menu_order' %}
+									{% set args = {'menu_order' : 'ASC', 'hide_empty' : false} %}
+								{% endif %}
+							
+								{% set terms = function('get_terms', attribute_name, args) %}
+								{%set i = 0 %}
+								{% set j=0 %}
+								
+								{% for term in terms if term.slug in options %}
+									{% if accessory.var_dimensions and term.taxonomy=="pa_size" %}
+										{% set p_dimensions = accessory.var_dimensions[i] | join(' x ')~product_unit %}
+										
+										{% if accessory.var_dimensions is iterable  %} 
+											<option value="{{term.slug}}">
+												{{function('apply_filters', 'woocommerce_variation_option_name', p_dimensions ) }}
+											</option>
+										{% endif %}
+									{% else %}
+										<option value="{{term.slug}}" data-id="{{accessory.get_variation_by_attribute(attribute_name, term.slug, 'variation_id')}}">
+											{{function('apply_filters', 'woocommerce_variation_option_name', term.name )}}
+										</option>
+									{% endif %}
+									{% set i = i + 1 %}
+									{% set j = j + 1 %}
+								{% endfor %}
+							{% else %}
+								{% for option in options %}
+									<option value="{{option}}" data-id="{{accessory.get_variation_by_attribute(attribute_name, option, 'variation_id')}}">
+										{{function('apply_filters', 'woocommerce_variation_option_name', option )}}
+									</option>
+								{% endfor %}
+							{%endif%}
+							{% endif %}
+						</select>
+						
+						{% if function('sizeof',attributes) == loop %}
+							<br>
+							<a class="reset_variations" href="#reset">
+								{{__( 'Clear selection', 'bn' ) }}
+							</a>
+						{% endif %}
+					</div>
+			{% endfor %}
+			</div><!-- END .variations -->
+		</div>
+	{% else %}
+		<p class="stock out-of-stock">
+			{{__( 'This product is currently out of stock and unavailable.', 'bn')}}
+	{% endif %}
+</form>

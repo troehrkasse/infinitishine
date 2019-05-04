@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% block page_slider %}
+    {%  if options.header.show_page_slider_or_featured %}
+		<section class="p-a-0 page-slider-wrapper">
+			<div class="page-slider">
+				<div clas='inner'>
+					<div class='thumbnail-wrapper'>
+						<img class='img-fluid' src="{{post.thumbnail.src | resize(1400, 200)}}" />
+					</div>
+				</div>
+			</div>
+		</section>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+	<div class="content-wrapper">
+		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+			<section class="article-content">
+				<h1 class="article-h1">{{post.title}}</h1>
+				<div class="article-body">
+					{{post.content}}
+				</div>
+			</section>
+		</article>
+	</div><!-- /content-wrapper -->
+{% endblock %}

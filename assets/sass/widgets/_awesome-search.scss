@@ -1,0 +1,111 @@
+.awesome-search-app{
+    margin-top: $padding;
+    
+    .awesome-search-wrapper {
+        position: relative;
+        
+        .search-wrapper{
+            
+            .loader{
+                display:block; clear:both; text-align:center;
+                
+                .fa-spinner{
+                    display:none;
+                }
+            }
+        }
+        
+        .inner{
+            min-height:40px;  border-radius: 0.25rem; border:solid 1px $brand-primary; background:#FFF; z-index:10;
+            
+             &:after{
+                content:'\f002'; position:absolute; top:0; right:1px;  width:45px; /*height:100%;*/ padding:12px; /*border-left:solid 1px $brand-primary; border-top: solid 1px $brand-primary;*/  @include fa-icon(); background:transparent; border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;
+            }
+            
+            form{
+                height:40px; overflow:hidden; background:transparent; position:absolute; width:100%; left:0; top:0;
+                
+                input[type=text]{
+                    width:100%; height:100%; border:none; background:transparent; display: block; padding: 0.375rem 0.75rem; font-size: 1.48rem; line-height: 1.45;
+                    
+                    &:active,&:focus{
+                        outline:none; border:none; box-shadow:none;
+                    }
+                }
+                
+                .btn-search{
+                    &:hover{
+                        color:$brand-primary; background: #ccc !important;
+                    }
+                    
+                    .fa-search{
+                        position: relative; top: 3px;
+                    }
+                }
+            }
+                
+            .search-results-wrapper{
+                clear:both; max-height:440px; overflow:auto; margin-top:40px;
+                
+                .groupped-search-wrapper{
+                    .group-tab-content-wrapper{
+                        .group-tab-content{
+                            padding: 0;
+                            .group-items-wrapper{
+                                margin-left: 0; margin-right: 0; width: 100%; overflow-x: hidden; position: relative;
+                                
+                                .title{
+                                    font-size: 0.77rem; color: $gray; margin-bottom: 0;
+                                }
+                                
+                                > * {
+                                    padding-left: 0; padding-right: 0; z-index: 0;
+                                    
+                                    &:first-child{
+                                        position: absolute; left: 0; bottom: 0; width: 100%; z-index: 1; background: $gray-lightest; padding: $padding/2;
+                                    }
+                                }
+                                
+                                .group-item-wrapper{
+                                    flex: 0 0 100%; max-width: 100%; 
+                                    
+                                    &:hover{
+                                        background: $gray-lightest; cursor: pointer;
+                                    }
+                                    
+                                    .card{
+                                        border-left: none; border-right: none; white-space: nowrap; display: flex; box-sizing: border-box;
+                                        flex-direction: initial; flex-wrap: wrap; -webkit-box-orient: initial; box-orient: initial;
+                                        
+                                        > *{
+                                            box-sizing: border-box; vertical-align: top; align-items: flex-start;
+                                        }
+                                        
+                                        .image-wrapper{
+                                            max-width: 25%; flex: 0 0 25%; padding: 0 $padding/2;
+                                        }
+                                        
+                                        .card-block{
+                                            white-space: initial; padding: 0; max-width: 75%; flex: 0 0 75%;
+                                            
+                                            .card-title{
+                                                margin-bottom: 0; padding: $padding;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+        &.active{
+            .search{
+                background: $color-white;
+            }
+        }
+    }
+}

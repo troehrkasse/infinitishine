@@ -1,0 +1,26 @@
+{% if post.comment_status != 'closed' %}
+
+<!--Section: Comments list-->
+<section class="comments" id="comments">
+	{% if post.comment_count > 0 %}
+	<h3 class='title text-xs-left'>
+    	Comments <span class="comments-count">{{post.comment_count}}</span>
+    </h3>
+    {% endif %}
+    
+    <!--Main wrapper-->
+    <div class="comments-list">
+        <!--First row-->
+       	{% if post.comment_count > 0 %} 
+       		{% for cmt in post.get_comments() %}
+				{% include "partials/comments/comment.twig" with {comment:cmt} %}
+			{% endfor %}
+		{% endif %}
+    </div>
+    
+    {% include 'partials/comments/commentform.twig' %}
+    <!--/.Main wrapper-->
+</section>
+
+	{{fn('wp_enqueue_script', 'comment-reply' )}}
+{% endif %}

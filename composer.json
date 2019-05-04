@@ -1,0 +1,40 @@
+{
+  	"name": "infinitishine",
+  	"description": "A custom WordPress theme built for infinitishine.com",
+  	"keywords": ["wordpress", "theme", "infinitishine", "twirltech"],
+  	"homepage": "https://infinitishine.com",
+  	"authors": [
+    	{
+      	"name": "TWIRLTECH",
+      	"email": "tyson@twirltech.solutions",
+      	"homepage": "https://twirltech.solutions"
+    	}
+  	],
+		"repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+   	],
+  	"type": "wordpress-theme",
+  	"require": {
+		"twig/extensions" : 	"^1.4",
+		"symfony/translation": ">=0",
+		"mnsami/composer-custom-directory-installer": "1.1.*",
+		"twbs/bootstrap" : "^v4.0.0-alpha.3"
+	},
+	"config": {
+	 "vendor-dir":  "framework/vendors"
+	},
+		"extra": {
+		"installer-paths": {
+			"framework/vendors/{$name}/": ["type:wordpress-plugin", "type:wordpress-theme"]
+		}
+	},
+	"autoload": {
+        "psr-0": {
+            "Acme": "src/"
+        },
+			"files": []
+    }
+}

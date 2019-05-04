@@ -1,0 +1,137 @@
+body.awesome-search-live-search-page,body.search-results{
+    #live-search-app{
+        @include make-container();  @include make-container-max-widths();
+        
+        header{
+            .filtering-by-wrapper{
+                .filtering-by{
+                    padding: $padding/2 $padding; background: $brand-white; margin-right: $padding/2;
+                    
+                    &:hover{
+                        box-shadow: 0 0 3px 0 rgba(#000, 0.125);
+                    }
+                    
+                    .icon{
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+            hr{
+                border-top-color: $gray-lighter; margin-bottom: $padding; margin-top: $padding;
+            }
+        }
+        
+        aside{
+            ul{
+                padding: 0;
+            }
+            
+            .vue-slider-process{
+                background-color: $brand-primary;
+            }
+            
+            .awesome-search-wrapper{
+                form{
+                    input{
+                        border: none; border-radius: none; border-top: solid 1px $border-color;
+                    }
+                }    
+            }
+            
+            .group-items{
+                .group-item-wrapper{
+                    
+                    .group-item{
+                        > *{
+                            display: inline-block; vertical-align: middle;
+                        }
+                    }
+                    
+                    .name{
+                        width: 80%; @include text-truncate();
+                    }
+                }
+            }
+        }
+        
+        .search-results-wrapper{
+            min-height: 1800px;
+            
+            .item-wrapper{
+                padding:0; text-align: center; margin: 0;
+                
+                .item{
+                    
+                    .card{
+                        margin:0; padding:0; height:100%; text-align:center; border-color:$border-color; position:relative;
+                        
+                        .inner{
+                            padding-top: $padding*2; padding-bottom: $padding*2;
+                        }
+                        
+                        .img-wrapper{
+                            display:inline-block; width: 80%;
+                        }
+                        
+                        .title{
+                            display: block; height: auto;
+                        }
+                        
+                        .card-title{
+                            padding:6px; margin:0; margin-left: auto; margin-right: auto; width: 80%; height: 52px;
+                            
+                            @include multiline-truncate(); 
+
+                            //@include text-truncate(); 
+                        }
+                        
+                        .price-wrapper{
+                            display:block; color:$brand-success; font-weight:800; height: 45px; margin-top: $padding/2;
+                            
+                            .savings{
+                                display:block; padding:15px 0; color:$brand-info; bottom: 8px;
+                            }
+                        }
+                        
+                        &:hover{
+                            background:$gray-lightest;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .pagination-wrapper{
+            @extend .pagination-wrapper;
+            
+            .inner{
+                text-align: right;
+                
+                ul{
+                    @extend .pagination; align-items: flex-end; display: inline-flex;
+                    
+                    li{
+                        margin-right: 0 !important; text-align: center;
+                        
+                        a{
+                            @extend .page-link; //color: $brand-primary;
+                            
+                            &:hover{
+                                background: $border-color;
+                            }
+                        }
+                        
+                        &.active{
+                            
+                            a{
+                                background: $brand-info; color: $brand-white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

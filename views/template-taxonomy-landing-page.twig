@@ -1,0 +1,61 @@
+{% block page_slider %}
+    <section class="p-a-0 page-slider-wrapper">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="description-wrapper read-more-parent">
+                    <div class="title-wrapper">
+                        <h1 class="display-5 title">{{ post.title }}</h1>
+                    </div>
+
+                    <div class="term-description read-more-content">
+                        <div class="inner">
+                            {{ post.content }}
+                        </div>
+                    </div>
+                    {% if post.content %}
+                    <div class="read-more-wrapper">
+                        <button type="button" class="btn btn-secondary btn-sm text-white read-more-button"
+                                data-read_more_height="110">
+                            <span>Expand</span>
+                            <i class="fa fa-chevron-circle-down text-white ml-1" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% extends 'base.twig' %}
+{% block content %}
+    {% if terms %}
+    <section class="terms-wrapper term-cards">
+        <div class="inner">
+            <div class="row terms">
+                {% for term in terms if term.title%}
+                <div class="col-sm-6 col-xl-4 card-block card text-center term">
+                    {% if term.thumbnail %}
+                    <div class="img-wrapper">
+                        <a href="{{term.link}}">
+                            <img  class="img-fluid" src="{{ term.thumbnail.src('product-thumbnail') }}" width="440" height="240" />
+                        </a>
+                    </div>
+                    {% endif  %}
+
+                    <h4 class="card-title title">
+                        <a href="{{term.link}}">{{term.title}}</a>
+                    </h4>
+                    <div class="p-y-2 card-block">
+                        <span class="product-count">{{ term.count }} products available</span>
+                    </div>
+                    <div class="card-link">
+                        <a class="btn btn-primary" href="{{ term.link }}">View Collection</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+{% endblock %}

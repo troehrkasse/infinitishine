@@ -1,0 +1,31 @@
+#awesome-mini-cart {
+    box-shadow: 0 0 1.75rem 0 rgba(0, 0, 0, 0.145);
+
+    #awesome-mini-cart-base,
+    span.cart-icon {
+        background-color: #FFF !important;
+    }
+
+    span.cart-icon {
+        border: solid .2rem $border-color;
+        box-shadow: 0 0 1.75rem 0 rgba(0, 0, 0, 0.145);
+    }
+
+    #awesome-mini-cart-base {
+        color: #FFF;
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            a{
+                background-color: $link-color;
+
+                &:hover{
+                    background-color: $link-hover-color;
+                }
+            }
+        }
+    }
+}

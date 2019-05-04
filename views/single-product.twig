@@ -1,0 +1,305 @@
+{% extends 'base.twig' %}
+
+{% block page_slider %}
+{% endblock %}
+
+{% block content %}
+    {% do action('woocommerce_before_single_product') %}
+
+    {% if product.thumbnail %}
+        <section class="product-wrapper product-gallery-wrapper">
+            <div class="clearfix product container" data-id="{{ product.ID }}">
+                <div class="quick-stats-wrapper d-md-inline-block">
+                    <div class="quick-stats">
+                        <div class="entry-summary">
+                            {% do action( 'woocommerce_single_product_summary' ) %}
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="inner">
+                    <div class="product-gallery">
+                        <div class='infinitishine-slider'>
+                            {% if product.featured_video %}
+                                <div class='video-wrapper'>
+                                    <!-- 16:9 aspect ratio -->
+                                    <figure class="height embed-responsive embed-responsive-16by9">
+                                        <iframe
+                                                class="clearfix embed-responsive-item bn-analytics-event event-youtube"
+                                                data-analytics_data='{"action":"click", "type":"event","cat":"bn_event_featured_youtube","label":"featured_youtube","value":"0"}'
+                                                src="//www.youtube.com/embed/{{ product.featured_video }}?enablejsapi=1&autoplay=0&&rel=0"
+                                                id="featured-player"></iframe>
+                                    </figure>
+                                </div>
+                            {% endif %}
+
+                            {% for pic in product.gallery %}
+                                <div class="image-wrapper">
+                                    <img class="img-fluid" src="{{ pic.src }}"/>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class='slider-controls-product-gallery'></div>
+                    </div>
+
+
+                    {% if product.gallery %}
+                        <div class="product-gallery-nav">
+                            <div class="infinitishine-slider">
+                                {% if product.featured_video  %}
+                                    <div class='image-wrapper fa'>
+                                        <img class='img-fluid img-rounded'
+                                             src="{{ product.thumbnail.src | resize(60,40) }}"
+                                             title='{{ product.thumbnail.title }}'/>
+                                    </div>
+                                {% endif %}
+
+                                {% for pic in product.gallery %}
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid img-rounded" src="{{ pic.src|resize(60,40) }}"/>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class='slider-controls-product-gallery-nav'></div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <div style="visibility:hidden; height:0;">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link " data-toggle="tab" href="#home" role="tab">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane" id="home" role="tabpanel">...</div>
+            <div class="tab-pane show active " id="profile" role="tabpanel">...</div>
+            <div class="tab-pane" id="messages" role="tabpanel">...</div>
+            <div class="tab-pane" id="settings" role="tabpanel">...</div>
+        </div>
+    </div>
+
+    <section class="product-info-wrapper ">
+        <div class="container inner">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                {% if product.content %}
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-toggle="tab" href="#description" role="tab">Description</a>
+                    </li>
+                {% endif %}
+
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link show active" data-toggle="tab" href="#specs" role="tab">Details</a>
+                    </li>
+
+                {% if product.manuals or product.videos %}
+                    <li class="nav-item" role="presentation">
+                        <a class="ajax-tab nav-link" data-toggle="tab" href="#resources" role="tab">Resources</a>
+                    </li>
+                {% endif %}
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                {% if product.content %}
+                    <div class="tab-pane fade" id="description" role="tabpanel">
+                        {{ product.content }}
+                    </div>
+                {% endif %}
+
+                    <div class="tab-pane fade in show active" id="specs" role="tabpanel">
+                        <h3 class='title'>Product Specifications</h3>
+                        <div class='content'>
+                            <ul class='product-specs'>
+                                {% for spec in specifications %}
+                                    <li>{{ spec.name }}: {{ spec.content }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                {% if product.manuals or product.videos %}
+                    <div class="tab-pane fade " id="resources" role="tabpanel">
+                        {% if product.manuals %}
+                            <h4 class='h4-responsive title'>Owner Manuals</h4>
+                            <div class='manuals-wrapper'>
+                                <div class='row manuals'>
+                                    {% for manual in product.manuals %}
+                                        <div class="col-sm-6 col-md-4 col-xl-3 manual">
+                                            <div class="inner">
+                                                <a class="" href="{{ manual.link }}">
+                                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                                    <span class="h3 title">{{ manual.title }}</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if product.videos %}
+                            <br/>
+                            <div class='videos-wrapper'>
+                                <div class='row-videos row'>
+                                    <div class='col-12'>
+                                        <h4 class='h4-responsive'>Video Resources</h4>
+                                    </div>
+
+                                    {% for video in product.videos %}
+                                        <div class="col-sm-4 col-xxl-3 video">
+                                            <div class='video-wrapper'>
+                                                <!-- 16:9 aspect ratio -->
+                                                <figure class="height embed-responsive embed-responsive-16by9">
+                                                    <iframe
+                                                            class="clearfix embed-responsive-item bn-analytics-event event-youtube"
+                                                            data-analytics_data='{"action":"click", "type":"event","cat":"bn_event_youtube","label":"youtube","value":"0"}'
+                                                            src="//www.youtube.com/embed/{{ video }}?enablejsapi=1&autoplay=0&&rel=0"
+                                                            id="{{ video }}-player"></iframe>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                    {% if product.comments %}
+                        <h3 class='title'>Customer Reviews</h3><br />
+                        {% for comment in product.comments %}
+                            {% include 'partials/comments/comment.twig' %}
+                        {% endfor %}
+                    {% endif %}
+                    {{ comment_form }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="bottom-section">
+        <div class="container">
+            <div class="row">
+                {% include "partials/sidebar.twig" %}
+
+                {% set accessories = product.accessories %}
+                {% set product_accessories_title = 'Goes great with these accessories' %}
+
+                {% if not accessories %}
+                    {% set accessories = product.related('brands', product.terms('brands')[0].term_id, {tax: 'product_cat', terms: ['sheds', 'value', 'carport', 'garages', 'garden-sheds']}) %}
+                    {% set product_accessories_title = 'Accessories from ' ~ product.terms('brands')[0] %}
+                {% endif %}
+
+                <div class="col-sm-12 col-md-9 single-product-extra-content-wrapper">
+                    {% if accessories %}
+                        <section id="product-details-accessories"
+                                 class='mb-3 tab-pane betg-section related-products-wrapper' role='tabpanel'>
+                            <div class="product-cards">
+                                <h3 class='title'>{{ product_accessories_title }}</h3>
+
+                                <div class='related-products'>
+                                    <div class="gallery products">
+                                        {% set col_class='col-6' %}
+
+                                        {% for product in accessories %}
+                                            <div class="clearfix product-wrapper">
+                                                {% include ['product/tease.twig'] %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                        </section>
+                    {% endif %}
+
+                    {% set not_in_cats = {tax:'product_cat', terms:['shed-accessories']} %}
+                    {% set related_products = product.related('brands', product.terms('brands')[0].term_id, not_in_cats) %}
+                    {% set related_products_title = 'Other Products from ' ~ product.terms('brands')[0] %}
+                    {% set related_term =product.terms('brands')[0] %}
+
+                    {% if not related_products %}
+                        {% set related_products = product.related('models', product.terms('models')[0].term_id, not_in_cats) %}
+                        {% set related_products_title = 'More ' ~ product.terms('models')[0]~' models' %}
+                        {% set related_term =product.terms('models')[0] %}
+                    {% endif %}
+
+                    {% if not related_products %}
+                        {% set related_products = product.related('product_cat', 'sheds', not_in_cats) %}
+                        {% set related_products_title = 'Related Products' %}
+                        {% set related_term =product.terms('product_cat')[0] %}
+                    {% endif %}
+                    {% if related_products %}
+                        <section id="product-details-related" class='tab-pane betg-section related-products-wrapper'
+                                 role='tabpanel'>
+                            <div class="product-cards">
+                                <h3 class='title'>
+                                    {{ related_products_title }}
+                                    <small><a class='read-more' href="{{ related_term.link }}"> view
+                                            all {{ related_term.name }} models</a></small>
+                                </h3>
+
+                                <div class='related-products'>
+                                    <div class="gallery products">
+                                        {% set col_class='col-6 col-md-4' %}
+
+                                        {% for product in related_products %}
+                                            <div class="clearfix product-wrapper">
+                                                {% include ['product/tease.twig'] %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    {% endif %}
+
+                    {% if not related_products or not accessories %}
+                        {% if popular_products %}
+                            <section id="popular-products" class='tab-pane betg-section related-products-wrapper'
+                                     role='tabpanel'>
+                                <div class="product-cards">
+                                    <h3 class='title'>Popular Products</h3>
+
+                                    <div class='related-products'>
+                                        <div class="gallery products">
+                                            {% set col_class='col-6 col-md-4' %}
+
+                                            {% for product in popular_products %}
+                                                <div class="related-product-wrapper product-wrapper">
+                                                    {% include ['product/tease.twig'] %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% do action('woocommerce_after_single_product') %}
+{% endblock %}

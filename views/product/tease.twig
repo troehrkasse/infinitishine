@@ -1,0 +1,28 @@
+<div class="product {{product.primary_term.slug}}">
+    <div class="clearfix">
+        <div class="inner">
+            <div class="img-wrapper">
+                <a href="{{product.link}}">
+                    {% if product.product.is_on_sale() %}
+                        <span class="sale-label badge">SALE!</span>
+                    {% endif %}
+                    <img  class="img-fluid" src="{{ product.thumbnail.src }}" width="440" height="240" />
+                </a>
+            </div>
+
+            <h5 class="card-title title">
+                <a href="{{product.link}}">{{product.post_title}}</a>
+            </h5>
+
+            <div>
+                {{product.product.get_price_html}}
+            </div>
+
+
+
+            <div class='add-to-cart-outer'>
+                {% include 'woo/partials/add-to-cart-ajax.twig' %}
+            </div>
+        </div>
+    </div>
+</div>

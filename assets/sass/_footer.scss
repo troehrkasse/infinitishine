@@ -1,0 +1,82 @@
+footer.infinitishine-footer-section {
+    color: $brand-primary;
+    width: 100%;
+    
+    section {
+        &:not(:first-of-type) {
+            border-top: solid 1px darken($border-color, 20%);
+            background: $border-color;
+        }
+    }
+
+    .cform-wrapper {
+        form {
+            .form-group {
+                flex: 0 0 100%;
+                max-width: 100%;
+
+            }
+            input[type=text],
+            input[type=email],
+            textarea {
+                width: 100%;
+                border: solid 1px $brand-primary;
+            }
+
+            input[type=submit] {
+                @include media-breakpoint-up(md) {
+                    width: 40%;
+                }
+            }
+
+            textarea {
+                height: 240px !important;
+            }
+        }
+
+        .rc-anchor {
+            background: transparent !important;
+            border: solid 1px $brand-primary;
+        }
+    }
+    
+    .gform_wrapper{
+        margin: 0 !important;
+    }
+
+    .gform_body {
+        ul {
+            padding: 0 !important;
+
+            li {
+                list-style: none; 
+            }
+        }
+
+        .gfield_required,
+        .gfield_label {
+            display: none;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .ginput_container {
+            margin: 0;
+        }
+
+        input,
+        textarea {
+            background: transparent;
+        }
+
+        textarea {
+            height: 240px;
+        }
+    }
+
+    .gform_footer {
+        @include media-breakpoint-up(md) {
+            max-width: 60%;
+        }
+    }
+}

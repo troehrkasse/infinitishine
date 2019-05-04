@@ -1,0 +1,175 @@
+{% extends 'base.twig' %}
+
+{% block page_slider %}
+{% endblock %}
+
+{% block content %}
+
+        <section class="notice-board" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 align-self-center site-intro">
+                        {% if page.content %}
+                        <div class="recent-posts-wrapper">
+                            <div class='recent-posts'>
+                                {{page.content}}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!--<div class="align-self-center col-md-6 align-self-center">
+                        {% include 'partials/interactive-catalog.twig' %}
+                    </div>-->
+                </div>
+            </div>
+        </section>
+
+
+{% if featured.rings.posts %}
+<section class='new-arrivals product-cards new-rings'>
+    <div class="container">
+        <header>
+            <h2 class="h2-responsive title">
+                Popular  <small class="text-muted">in Rings</small>
+                <small><a class='read-more' href="{{featured.rings.term.link}}"> more {{featured.rings.term.name}}</a></small>
+            </h2>
+        </header>
+        <div>
+            <div class="clearfix row products">
+                {% for product in featured.rings.posts %}
+                <div class="clearfix col-sm-6 col-md-4 col-xxl-3 product-wrapper">
+                    {% include ['product/tease.twig'] %}
+                </div>
+               {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+    {% if recent_posts %}
+<section class="notice-board bg-whiteDISABLED" >
+    <div class="container">
+        <div class=" row">
+            <div class="col-md-6 align-self-center">
+                <div class="chalkboard-wrapper ending-sales-wrapper">
+                    <div class="chalkboard">
+                        <a href="{{page_options.banner[2].link}}">
+                            <span class="d-block h2 h2-responsive font-chalk title">
+                                <span>{{page_options.banner[2].title}}</span>
+                            </span>
+                            <span class='d-block color-white'>{{page_options.banner[2].text}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 align-self-center">
+
+                <div class="recent-posts-wrapper">
+                    <h3 class='h3-responsive title'>
+                        New from the Blog
+                    </h3>
+                    <div class='recent-posts'>
+                    {% for post in recent_posts %}
+                    <div class="clearfix tease-wrapper post-tease-wrapper">
+                        <div class="tease post-tease">
+                            <h4 class="h4-responsive title">
+
+                                <a href="{{post.link}}">
+                                    {% if post.thumbnail %}
+                                        <img class="img-fluid" src="{{ post.thumbnail | resize(80, 80) }}" />
+                                    {% endif %}
+                                    {{post.post_title}}
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+    {% endif %}
+
+{% if featured.earrings.posts %}
+<section class='new-arrivals product-cards new-earrings'>
+        <div class="container">
+            <header>
+                <h2 class="h2-responsive title">
+                    Popular  <small class="text-muted">in Earrings</small>
+                    <small><a class='read-more' href="{{featured.earrings.term.link}}"> more {{featured.earrings.term.name}}</a></small>
+                </h2>
+            </header>
+            <div>
+                <div class="clearfix row products">
+                    {% for product in featured.earrings.posts %}
+                    <div class="clearfix col-sm-6 col-xxl-4 product-wrapper">
+                        {% include ['product/tease.twig'] %}
+                    </div>
+                   {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+{% if faqs %}
+<section class='new-arrivals frequently-asked-questions'>
+    <div class="container">
+        <header>
+            <h2 class="h2-responsive title">
+                Frequently Asked Questions
+            </h2>
+        </header>
+        <div>
+            <div class="clearfix faqs">
+                {% for post in faqs %}
+                    <div class="clearfix faq-wrapper tease-wrapper faq-tease-wrapper">
+                        {% include ['faq/tease.twig'] %}
+                    </div>
+                   {% endfor %}
+                   
+                   {% if options.awesome_faqs.faqs_page %}
+                   <div class="clearfix faq-wrapper tease-wrapper faq-tease-wrapper">
+                        {% 
+                            include ['faq/tease.twig'] 
+                            with {
+                                post:{
+                                    title: 'Still have Questions', 
+                                    content:'See more questions and answers or ask a questions: <p class="py-1"><a href="'~options.awesome_faqs.faqs_page.link~'">'~options.awesome_faqs.faqs_page.title~'</a></p>'
+                                }
+                            } 
+                        %}
+                    </div>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if featured.pendants.posts %}
+<section class='new-arrivals product-cards new-bracelets'>
+        <div class="container">
+            <header>
+                <h2 class="h2-responsive title">
+                    Popular  <small class="text-muted">in Pendants</small>
+                    <small><a class='read-more' href="{{featured.pendants.term.link}}"> more {{featured.pendants.term.name}}</a></small>
+                </h2>
+            </header>
+            <div>
+                <div class="clearfix row products">
+                    {% for product in featured.pendants.posts %}
+                    <div class="clearfix col-6 col-sm-4 col-lg-3 col-xxl-2 product-wrapper accessory">
+                        {% include ['product/tease.twig'] %}
+                    </div>
+                   {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
+{% endblock %}

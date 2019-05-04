@@ -1,0 +1,59 @@
+{% if menu.user.get_items %}
+<div class="clearfix d-none d-lg-inline-block user-nav-wrapper nav-wrapper">
+	<nav id="nav-top" class="clearfix nav-top user-nav" role="navigation">
+		<ul class="nav">
+			<li class="pull-right nav-item weglot-wrapper">
+				<div id="weglot_here"></div>
+			</li>
+			{% for item in menu.user.get_items %}
+				<li class="nav-item {{item.classes | join(' ')}}">
+					
+					<a class="nav-link" href="{{item.get_link}}">
+						{% if 'home' in item.classes %}
+							<span><i class="fa fa-home"></i></span>
+						{% endif %}
+						
+						{% if 'account' in item.classes %}
+							<span><i class="fa fa-user"></i></span>
+						{% endif %}
+						
+						{% if 'phone' in item.classes %}
+							<span><i class="fa fa-phone"></i></span>
+						{% endif %}
+						
+						{% if 'list-alt' in item.classes %}
+							<span><i class="fa fa-list-alt"></i></span>
+						{% endif %}
+						
+						{% if 'fa-table' in item.classes %}
+							<span><i class="fa fa-table"></i></span>
+						{% endif %}
+						
+						{% if 'book' in item.classes %}
+							<span><i class="fa fa-book"></i></span>
+						{% endif %}
+						
+						{% if 'checkout' in item.classes %}
+							<span><i class="fa fa-credit-card"></i></span>
+						{% endif %}
+						
+						{% if  'hide-title-text' not in item.classes %}
+							<span>{{item.title}}</span>
+						{% endif %}
+						
+					</a>
+					{% if item.get_children %}
+						<ul class="nav nav-drop">
+						{% for child in item.get_children %}
+							<li class="nav-drop-item">
+								<a class="nav-link" href="{{child.get_link}}">{{child.title}}</a>
+							</li>
+						{% endfor %}
+						</ul>
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ul>
+	</nav><!-- #nav -->
+</div>
+{% endif %}

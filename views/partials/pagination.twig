@@ -1,0 +1,36 @@
+<section class="py-3 pagination-wrapper">
+    <nav aria-label="pagination-wrapper">
+        <ul class="pagination pages">
+             {% if pagination.prev %}
+                <li class="page-item">
+                  <a class="prev page-link {{pagination.prev.link|length ? '' : 'invisible'}}" href="{{pagination.prev.link|trim('/')}}" tabindex="-1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo; Previous</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+            {% endif %}
+        
+            {% for page in pagination.pages %}
+            <li class="page-item">
+                {% if page.link %}
+                <a class="page-link {{page.class}}" href="{{page.link | trim('/')}}">
+                    <span>{{page.title}} </span>
+                    <span class="sr-only">(current)</span>
+                </a>
+                {% else %}
+                    <span class="page-link {{page.class}}">{{page.title}}</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        
+            {% if pagination.next %}
+                <li class="page-item">
+                    <a href="{{pagination.next.link | trim('/')}}" class="next page-link {{pagination.next.link|length ? '' : 'invisible'}}" aria-label="Next">
+                        <span aria-hidden="true">Next &raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            {% endif %}
+      </ul>
+    </nav>
+</section>

@@ -1,0 +1,37 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+<div class='404-page-wrapper py-2'>
+    <div class='row'>
+        <div class='col-12'>
+            <h1 class="title h1-responsive article-h1">
+                {{page.title}}
+            </h1>
+        </div>
+        
+        {% if page.content %}
+        <div class='col-sm-12 pb-2'>
+            {{page.content}}
+        </div>
+        {% endif %}
+        
+	    <div class='col-sm-6'>
+	        {% include 'partials/interactive-catalog.twig' %}
+	    </div>
+	    {% if menu.not_found_links.get_items %}
+	    <div class='col-sm-6'>
+	        <h6 class='h6-responsive title'> Other helpful links </h6>
+	        <div class='helpful-links-wrapper'>
+	            <ul class='helpful-links'>
+	            	{% for item in menu.not_found_links.get_items %}
+	            	<li class="nav-item {{item.classes | join(' ')}} helpful-link">
+						<a class="nav-link" href="{{item.get_link}}">{{item.title}}</a>
+					</li>
+	                {% endfor %}
+	            </ul>
+	        </div>
+	    </div>
+	    {% endif %}
+	</div>
+</div>
+{% endblock %}

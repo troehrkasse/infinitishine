@@ -1,0 +1,64 @@
+// Rem output with px fallback
+@mixin font-size($sizeValue: 1) {
+	font-size: ($sizeValue * 16) * 1px;
+	font-size: $sizeValue * 1rem;
+}
+
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Clearfix
+@mixin clearfix() {
+	content: "";
+	display: table;
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after() {
+	clear: both;
+}
+
+@mixin border-top(){
+	border-top:1px solid $gray-light;
+}
+
+@mixin border-right(){
+	border-right:1px solid $gray-light;
+}
+
+@mixin border-bottom(){
+	border-bottom:1px solid $gray-light;
+}
+
+@mixin border-left(){
+	border-left:1px solid $gray-light;
+}
+
+@mixin border(){
+	border:1px solid $gray-light;
+}
+
+@mixin vertical-align($pos: relative, $h: 50%){
+    position: $pos; top: $h; transform: translateY(-50%);
+}
+
+@mixin brand-shadow($hover: no){
+	box-shadow: 0 0 1px 0 darken($gray-lighter, 9%);
+	
+	&:hover{
+		@if $hover == 'yes' {
+			box-shadow:0 0 2px 0 darken($gray-lighter, 25%);
+		}
+	}
+}
+
+@mixin border-top(){
+	border-top-style: solid;	border-top-width: 4px;	border-top-color: $brand-black;
+	border-top-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 61%, #2cb5e8 75%);
+	
+	//linear-gradient(141deg, #0fb8ad 0%, #1fc8db 61%, #2cb5e8 75%);
+}

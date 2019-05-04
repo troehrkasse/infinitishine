@@ -1,0 +1,11 @@
+body.woocommerce-cart{
+    .woocommerce{
+        padding-top: $padding;
+        
+        .row{
+            > *{
+                align-self: center;
+            }
+        }
+    }
+}

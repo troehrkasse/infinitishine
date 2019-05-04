@@ -1,0 +1,6 @@
+{% set cats = product.terms('product_cat') %}
+{% if cats %}
+<div class="terms-wrapper cats-wrapper">
+    <span class="title">Categor{{cats|length > 2 ? 'ies':'y'}}:</span> {{product.formatted_terms('product_cat', ['sheds'])}}
+</div>
+{% endif %}

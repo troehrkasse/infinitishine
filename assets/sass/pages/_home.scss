@@ -1,0 +1,309 @@
+body.home {
+  .page-slider-wrapper {
+    height: 320px;
+  }
+
+  .breadcrumb-wrapper{
+    display: none;
+  }
+}
+
+body.home{
+  .recent-posts{
+    .post-tease{
+      img{
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+// Slider
+// Home Slide
+body.home #content .home-top-slider{
+
+  .slides{
+    margin-bottom: 0  !important;
+    .slide{
+      position: relative;
+
+      > .inner {
+        position: relative;
+
+
+        .slide-content {
+          position: absolute;
+          right: $padding;
+          left: $grid-gutter-width;
+          bottom: 48px;
+          max-width: 90%;
+          z-index: 10;
+
+
+          .title{
+            font-size: 2rem;
+            line-height: 2rem;
+            display: inline;
+            border-radius: $border-radius;
+            color: $white;
+            background-color: map-get($theme-colors, secondary);
+            box-shadow: 10px 0 0 map-get($theme-colors, secondary), -10px 0 0 map-get($theme-colors, secondary);
+
+            > span{
+              color: map-get($theme-colors, primary);
+            }
+          }
+
+          .slide-link-wrapper{
+            position: relative;
+            left: -10px;
+
+            .slide-link {
+              margin-top: $padding;
+              background: map-get($theme-colors, primary);
+              color: $white !important;
+              text-transform: uppercase;
+              font-size: 1.25rem !important;
+              @include box-shadow(true);
+            }
+          }
+
+          @include media-breakpoint-up(md){
+            .title{
+              font-size: 2.5rem;
+              line-height: 2.5rem;
+            }
+
+            .slide-link{
+              // font-size: 1.75rem !important;
+            }
+          }
+
+          @include media-breakpoint-up(lg){
+            bottom: 100px;
+          }
+
+          @include media-breakpoint-up(xl){
+            bottom: 120px;
+            max-width: 80%;
+          }
+
+          @include media-breakpoint-up(sl){
+            bottom: 140px;
+          }
+        }
+      }
+    }
+  }
+  .slick-dots{
+    position: absolute;
+    bottom: 22px;
+    z-index: 11;
+
+    li{
+      button{
+        &:before{
+          font-size: 3rem;
+          color: $link-color;
+        }
+      }
+    }
+
+    @include media-breakpoint-up(lg){
+      bottom: 32px;
+    }
+
+    @include media-breakpoint-up(xl){
+      bottom: 100px;
+    }
+  }
+}
+
+body.home .site-intro{
+  display: flex;
+  justify-content: center;
+  flex: 0 0 100%;
+}
+
+body.home .infinitishine-page-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .page-wrapper {
+    padding: 0;
+  }
+
+  .wrapper {
+    > section {
+      padding: 45px 0;
+
+      &:nth-child(odd) {
+        background: #F6F6F6;
+      }
+
+      &:nth-child(even) {
+        box-shadow: 0 0 2px 0 rgba(#000, 0.11) inset;
+      }
+
+      .site-intro{
+        max-width: 100%;
+        .home-intro{
+
+        }
+      }
+    }
+  }
+}
+
+body.home .infinitishine-page-wrapper .home-slider-wrapper{
+  .home-slider{
+    .home-slide{
+
+    }
+  }
+}
+
+body.home .infinitishine-page-wrapper .notice-board {
+  .ending-sales-wrapper {
+    .chalkboard {
+      &:before {
+        content: 'EXCLUSIVE ';
+      }
+
+      &:after {
+        content: 'SALES ';
+      }
+
+    }
+  }
+
+  .notice {
+    text-align: center;
+    position: relative;
+
+    .card {
+      border: none;
+      box-shadow: 0 0 1px 0 $brand-info;
+      transition: all ease-in-out .255s;
+      background: $gray-lightest;
+
+      @include media-breakpoint-up(md) {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 3px 0 $brand-info;
+      }
+    }
+
+    .card-title {
+      font-size: 2.663em;
+      color: $brand-primary;
+      font-weight: 600;
+      font-family: "Acme";
+      text-transform: uppercase;
+    }
+    .card-link {
+      display: block;
+      width: 100%;
+      font-size: 3em;
+      color: $brand-info;
+
+      @include media-breakpoint-up(xxl) {
+        font-size: 5em;
+        word-spacing: 3px;
+      }
+    }
+  }
+}
+
+body.home .infinitishine-page-wrapper .bg-white {
+  background: $brand-white;
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+body.home .infinitishine-page-wrapper .recent-posts-wrapper {
+  .recent-posts {
+    .tease {
+      border-top: solid 1px $brand-primary;
+      padding-top: $padding;
+      margin-top: $padding;
+    }
+  }
+}
+
+body.home .infinitishine-page-wrapper .new-arrivals {
+  position: relative;
+  .read-more {
+    font-size: 0.88rem;
+    font-style: italic;
+    text-transform: lowercase;
+  }
+
+  .products {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .product-wrapper.accessory {
+    .title {
+      overflow: hidden;
+    }
+  }
+
+  @include media-breakpoint-down(xl) {
+    &.new-rings {
+      .product-wrapper {
+        &:nth-child(n+10) {
+          display: none;
+        }
+      }
+    }
+
+    &.new-earrings {
+      .product-wrapper {
+        &:nth-child(n+9) {
+          display: none;
+        }
+      }
+    }
+
+    &.new-bracelets {
+      .product-wrapper {
+        &:nth-child(n+5) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+body.home .infinitishine-page-wrapper .frequently-asked-questions {
+  position: relative;
+
+  .faqs {
+    margin-top: $padding;
+
+    .faq-wrapper {
+      padding: $padding;
+
+      .faq-tease {
+        border-top: solid 3px $brand-primary;
+        padding-top: $padding*2;
+      }
+    }
+  }
+
+  .slider-control {
+    &.left {
+      left: $padding;
+    }
+
+    &.right {
+      right: $padding;
+    }
+  }
+}

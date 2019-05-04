@@ -1,0 +1,43 @@
+{% if comment %}
+<div class="row comment-wrapper {{classes}}">
+    {% if comment.author and comment.author.avatar %}
+    <!--Image column-->
+    <div class="col-sm-2 col-md-1 avatar-wrapper">
+        <img class='img-fluid' src="{{comment.author.avatar.abs_url}}">
+    </div>
+    <!--/.Image column-->
+    {% endif %}
+
+    <!--Content column-->
+    <div class="comment-content col-sm-10 col-md-11">
+        <h6 class="h6-responsive mb-0 user-name">{{comment.author.name}}</h6>
+        
+        <div class='card-data'>
+            <span class="comment-date">
+                <i class="fa fa-clock-o"></i> 
+                <span>{{comment.date|time_ago}}</span>
+            </span>
+        </div>
+        <p class="comment-text">
+            {{comment.comment_content|apply_filters('comment_text')}}
+            
+            <span class='d-block mt-1'>
+                <a rel="nofollow" 
+                    href="{{ function('get_permalink') }}?replytocom={{comment.ID}}#respond"
+                    class="reply-to-comment" 
+                    onclick="return addComment.moveForm( 'comment-{{comment.ID}}', '{{comment.ID}}', 'respond', '{{post.ID}}')"
+                    aria-label="Reply to {{comment.author}}">Reply</a>
+            </span>
+        </p> 
+    </div>
+    <!--/.Content column-->
+    
+    {% if comment.children %}
+    <div class='col-12 comment-children'>
+    	{% for cmt in comment.children %}
+			{% include "partials/comments/comment.twig" with {comment:cmt, classes:'comment-child-wrapper'} %}
+		{% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endif %}

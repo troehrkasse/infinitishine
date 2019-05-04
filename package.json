@@ -1,0 +1,36 @@
+{
+  "name": "infinitishine",
+  "version": "0.0.1",
+  "description": "Custom WordPress Woocommerce theme built for infinitishine.com",
+  "main": "main.js",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap-slider": "^9.1.3",
+    "font-awesome": "^4.6.3",
+    "slick-carousel": "^1.6.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "laravel-mix": "^1.7.2",
+    "node-sass": "^4.7.2"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "jewelry",
+    "wordpress",
+    "theme",
+    "clean"
+  ],
+  "author": "TWIRLTECH",
+  "license": "ISC"
+}

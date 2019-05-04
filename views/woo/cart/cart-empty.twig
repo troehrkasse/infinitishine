@@ -1,0 +1,27 @@
+<p class="cart-empty">
+
+</p>
+
+{% do action('woocommerce_cart_is_empty') %}
+
+{% if fn('wc_get_page_id', 'shop' ) > 0 %}
+	<div class='row'>
+	    <div class='col-sm-6'>
+	        {% include 'partials/interactive-catalog.twig' %}
+	    </div>
+	    {% if menu.helpful_links.get_items %}
+	    <div class='col-sm-6'>
+	        <h6 class='h6-responsive title'> Other helpful links </h6>
+	        <div class='helpful-links-wrapper'>
+	            <ul class='helpful-links'>
+	            	{% for item in menu.helpful_links.get_items %}
+	            	<li class="nav-item {{item.classes | join(' ')}} helpful-link">
+						<a class="nav-link" href="{{item.get_link}}">{{item.title}}</a>
+					</li>
+	                {% endfor %}
+	            </ul>
+	        </div>
+	    </div>
+	    {% endif %}
+	</div>
+{% endif %}

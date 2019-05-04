@@ -1,0 +1,27 @@
+<footer class='footer infinitishine-footer-section' style='background-image:url({{options.footer.background}});'>
+    {% if widgets.footer_widget_fluid %}
+    <section class='container py-3'>
+        <div class='row flex-row-reverse footer-widgets'>
+            {{widgets.footer_widget_fluid}}
+        </div>
+    </section>
+    {% endif %}
+    
+    <section class='copyright-section  p-1'>
+         <!--Copyright-->
+        <div class="container footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 copyright-wrapper text-sm-left">
+                        <small>© {{"now"|date('Y')}} Copyright: <b>Infiniti Shine</b></small>
+                    </div>
+                    <div class="col-sm-6 text-sm-right copyright-wrapper">
+                        <span id='raddcreative-attribution'></span>
+                        Crafted in collaboration with TWIRLTECH
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Copyright-->
+    </section>
+</footer>

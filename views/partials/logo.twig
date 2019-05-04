@@ -1,0 +1,14 @@
+{%if options.logo %}
+	<a class="hdr-logo-link" href="{{site.url}}" rel="home">
+		<span class="logo-wrapper">
+			<img class="logo img-fluid" src="{{options.logo|resize(200,100)}}"  />
+		</span>
+		
+		{%if options.always_show_header %}
+			<span class="site-title">{{site.title}}</span>
+		{%endif%}
+	</a>
+	
+{%else%}
+	<a class="hdr-logo-link" href="{{site.url}}" rel="home">{{site.name}}</a>
+{%endif%}

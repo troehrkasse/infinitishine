@@ -1,0 +1,7 @@
+{%  if fn('function_exists', 'yoast_breadcrumb') %}
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            {{ fn('yoast_breadcrumb','<div id="breadcrumbs">','</div>') }}
+        </div>
+    </div>
+{% endif %}

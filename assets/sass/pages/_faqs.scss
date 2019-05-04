@@ -1,0 +1,67 @@
+body.page-template-template-faqs{
+    .awesome-faqs{
+        .awesome-faqs-categories{
+            padding: 0;
+            
+            li{
+                list-style: none;
+                
+                a{
+                    &:before{
+                        background-color: $brand-info
+                    }
+                }
+            }
+        }
+        
+        .awesome-faqs-items{
+            > ul{
+                padding: 0;
+                
+                li{
+                    list-style: none;
+                    
+                    &.awesome-faqs-title h2{
+                        font-size: 1.445rem;
+                    }
+                    
+                    .awesome-faqs-trigger{
+                        &:before,&:after{
+                            background-color: $link-color;
+                        }
+                        
+                        &:hover{
+                            &:before,&:after{
+                                background-color: $link-hover-color;
+                            }
+                        }
+                    }
+                    
+                    .awesome-faqs-content{ 
+                        p{
+                          font-size: 1rem;  color: $body-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .faq-question-wrapper{
+        padding: $padding; background: $brand-white;
+        
+        header{
+            background: transparent; height: auto; text-align: left;
+        }
+        
+        form{
+            input[type=submit]{
+                width: 220px; @extend .btn-info;
+                
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,93 @@
+aside{
+    .widget{
+        background:#FFF; margin-bottom:30px; padding:12px;
+        
+        h2{
+            font-size:$font-size-lg;
+        }
+        
+        &.widget_recently_viewed_products{
+            padding-bottom:0;
+            
+            .product_list_widget{
+                li{
+                    border-top:solid 1px $border-color;
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    padding: 1rem;
+
+                    &:hover{
+                        background:$gray-lightest;
+                    }
+                    
+                    &:last-of-type{
+                        //padding-bottom:0;
+                    }
+                    
+                    a{
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .star-rating{
+                        margin-top: .5rem;
+                        margin-left: 2.7rem;
+                    }
+                }
+            }
+        }
+
+        &.widget_top_rated_products{
+            padding-bottom:0;
+
+            .product_list_widget{
+                li{
+                    border-top:solid 1px $border-color;
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    padding: 1rem;
+
+                    &:hover{
+                        background:$gray-lightest;
+                    }
+
+                    &:last-of-type{
+                        //padding-bottom:0;
+                    }
+
+                    a{
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .star-rating{
+                        margin-top: .5rem;
+                        margin-left: 2.7rem;
+                    }
+                }
+            }
+        }
+        
+        &.Networked_Sites{
+            padding-bottom:0;
+            
+            .widget-content{
+                .accordion{
+                    .panel-group{
+                        .panel{
+                            a{
+                                border-top:solid 1px $border-color; margin-left:-12px; margin-right:-12px; padding:12px; display:block;
+                                
+                                &:hover{
+                                    background:$gray-lightest;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
